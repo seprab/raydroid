@@ -16,7 +16,7 @@
 ### Notes
 > * Don't try to build from VS. Atm, I believe it corrupts something in the compiled objects.
 > * Invoking w64devkit from Win terminal or Git bash, and then calling `make` doesn't complete the build.
-> * The built application should be executed manually from File explorer or from w64devkit by calling `./_bin/Debug/raydroid.exe`. When called from Win terminal, some resources are not loaded.
+> * The built application should be executed from w64devkit by calling `./_bin/Debug/raydroid.exe`. When called from Win terminal or manually from file explorer, some resources are not loaded.
 
 ## Adding new source files to game
 Must be related in [_build\raydroid.make](_build\raydroid.make)
@@ -61,7 +61,7 @@ _TODO: Show your game to the world, animated GIFs recommended!._
 
 ## Developers
 
- - $(Developer 01) - $(Role/Tasks Developed)
+ - SepraB - Doing whatever
  - $(Developer 02) - $(Role/Tasks Developed)
  - $(Developer 03) - $(Role/Tasks Developed)
 
@@ -71,10 +71,14 @@ _TODO: Show your game to the world, animated GIFs recommended!._
  - itch.io Release: $(itch.io Game Page)
  - Steam Release: $(Steam Game Page)
 
+## Credits
+* [game-premake](https://github.com/raylib-extras/game-premake): I used to generate the initial files in this project.
+
+
 ## License
 
 This game sources are licensed under an unmodified zlib/libpng license, which is an OSI-certified, BSD-like license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
 
 $(Additional Licenses)
 
-*Copyright (c) $(Year) $(User Name) ($(User Twitter/GitHub Name))*
+*Copyright (c) 2022 seprab [github](https://github.com/seprab)
