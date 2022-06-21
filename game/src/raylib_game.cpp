@@ -23,7 +23,7 @@
 // Shared Variables Definition (global)
 // NOTE: Those variables are shared between modules through screens.h
 //----------------------------------------------------------------------------------
-GameScreen currentScreen = 0;
+GameScreen currentScreen = LOGO;
 Font font = { 0 };
 Music music = { 0 };
 Sound fxCoin = { 0 };
@@ -139,7 +139,7 @@ static void ChangeToScreen(int screen)
         default: break;
     }
 
-    currentScreen = screen;
+    currentScreen = (GameScreen)screen;
 }
 
 // Request transition to next screen
@@ -186,7 +186,7 @@ static void UpdateTransition(void)
                 default: break;
             }
 
-            currentScreen = transToScreen;
+            currentScreen = (GameScreen)transToScreen;
 
             // Activate fade out effect to next loaded screen
             transFadeOut = true;
