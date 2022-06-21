@@ -2,45 +2,61 @@
 
 ![RayDroid](screenshots/screenshot000.png "RayDroid")
 
+## Description
+I'm just learning and practicing the following:
+* Raylib
+* C++ desktop development
+* C++ android development
+* Make utility
+
+## Roadmap
+- [x] Configure the project to build a Windows executable with Make
+- [x] Configure the project to build a Windows executable with VS2022
+- [ ] Configure the project to build an Android bundle with Make
+- [ ] Configure the project to build an Android bundle with VS2022
+- [ ] Plan next steps (ex. planning and creating a minigame)
+
 ## How to clone and how to work on it
 1. `git clone git@github.com:seprab/raydroid.git`
 2. `git submodule update --init --recursive`
 3. To work on it, open the [raydroid solution](./raydroid.sln) with VS2022
-4. To build it:
-    1. Download w64devkit https://github.com/skeeto/w64devkit/releases
-    2. Add its bin/ folder to path `set PATH=c:\path\to\w64devkit\bin;%PATH%`
-    3. Manually execute w64devkit.exe from the installation path
-    4. From the w64devkit terminal move raydroid directory
-    5. Call `make`
+
+## How to build it
+It can be built with make or VS:
+
+### VS2022:
+1. Simply open the solution and build
+
+### MAKE:
+1. Download w64devkit https://github.com/skeeto/w64devkit/releases
+2. Add its bin/ folder to path `set PATH=c:\path\to\w64devkit\bin;%PATH%`
+3. Manually execute w64devkit.exe from the installation path
+4. From the w64devkit terminal move raydroid directory
+5. Call `make`
+6. Execute the program by calling `./_bin/Debug/raydroid.exe`
 
 ### Notes
-> * Don't try to build from VS. Atm, I believe it corrupts something in the compiled objects.
+> * Both build methods cannot be used sequentially. Before switching build methods, call `git reset --hard && git clean -fdx`
 > * Invoking w64devkit from Win terminal or Git bash, and then calling `make` doesn't complete the build.
-> * The built application should be executed from w64devkit by calling `./_bin/Debug/raydroid.exe`. When called from Win terminal or manually from file explorer, some resources are not loaded.
 
-## Adding new source files to game
+### Adding new source files to game when using MAKE
 Must be related in [_build\raydroid.make](_build\raydroid.make)
 ```
 $(OBJDIR)/<new file name>.o: ../game/src/<new file name>.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 ```
-## Building for other OpenGL targets
+### Building for other OpenGL targets
 If you need to build for a different OpenGL version than the default (OpenGL 3.3) you can specify an openGL version in your premake command line. Just modify the bat file or add the following to your command line
 
-### For OpenGL 1.1
+#### For OpenGL 1.1
     --graphics-api=opengl11
 
-### For OpenGL 2.1
+#### For OpenGL 2.1
     --graphics-api=opengl21
 
-### For OpenGL 4.3
+#### For OpenGL 4.3
     --graphics-api=opengl43
-
-
-## Description
-
-$(Your Game Description)
 
 ## Features
 
