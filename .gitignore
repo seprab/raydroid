@@ -1,6 +1,11 @@
 _build/*
 !_build/raydroid.make
 !_build/raylib.make
+!_build/raydroid.vcxproj
+!_build/raydroid.vcxproj.filters
+!_build/raydroid.vcxproj.user
+!_build/raylib.vcxproj
+!_build/raylib.vcxproj.filters
 _bin/
 .vs/
 .vscode/
