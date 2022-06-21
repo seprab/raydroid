@@ -15,10 +15,16 @@
 
 ### Notes
 > * Don't try to build from VS. Atm, I believe it corrupts something in the compiled objects.
-> * Invoking w64devkit from Win terminal or Git bash, and then calling make doesn't complete the build.
+> * Invoking w64devkit from Win terminal or Git bash, and then calling `make` doesn't complete the build.
 > * The built application should be executed manually from File explorer or from w64devkit by calling `./_bin/Debug/raydroid.exe`. When called from Win terminal, some resources are not loaded.
 
-
+## Adding new source files to game
+Must be related in [_build\raydroid.make](_build\raydroid.make)
+```
+$(OBJDIR)/<new file name>.o: ../game/src/<new file name>.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
+```
 ## Building for other OpenGL targets
 If you need to build for a different OpenGL version than the default (OpenGL 3.3) you can specify an openGL version in your premake command line. Just modify the bat file or add the following to your command line
 
