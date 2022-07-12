@@ -10,10 +10,10 @@ I'm just learning and practicing the following:
 * Make utility
 
 ## Roadmap
-- [x] Configure the project to build a Windows executable with Make
-- [x] Configure the project to build a Windows executable with VS2022
-- [ ] Configure the project to build an Android bundle with Make
-- [ ] Configure the project to build an Android bundle with VS2022
+- [ ] Configure the project to build a Windows executable with Make
+- [ ] Configure the project to build a Windows executable with VS2022
+- [x] Configure the project to build an Android APK with Make, src in C
+- [ ] Configure the project to build an Android APK with Make, src in C++
 - [ ] Plan next steps (ex. planning and creating a minigame)
 
 ## How to clone and how to work on it
@@ -21,7 +21,25 @@ I'm just learning and practicing the following:
 2. `git submodule update --init --recursive`
 3. To work on it, open the [raydroid solution](./raydroid.sln) with VS2022
 
-## How to build it
+## Android: How to build it
+It must be built with Make using CMD (Windows tested):
+
+### Pre-requisites:
+- NDK 21.4.7075529 and save it in C:/android-ndk
+- SDK Min: API 29 Max: I tested API 33
+- SDK Build Tools 29.0.3
+- OpenJDK 13 and save it in C:/open-jdk
+
+### Process:
+1. Compile raylib source code
+    1. navigate from command line to directory raylib/src/
+    2. Call `mingw32-make PLATFORM=PLATFORM_ANDROID`
+2. Compile game
+    1. Navigate back to the root directory
+    2. Call `mingw32-make PLATFORM=PLATFORM_ANDROID`
+
+
+## Windows: How to build it
 It can be built with make or VS:
 
 ### VS2022:
