@@ -2,7 +2,7 @@
 *
 *   raylib - Advance Game template
 *
-*   Gameplay Screen Functions Definitions (Init, Update, Draw, Unload)
+*   Title Screen Functions Definitions (Init, Update, Draw, Unload)
 *
 *   Copyright (c) 2014-2022 Ramon Santamaria (@raysan5)
 *
@@ -33,47 +33,48 @@ static int framesCounter = 0;
 static int finishScreen = 0;
 
 //----------------------------------------------------------------------------------
-// Gameplay Screen Functions Definition
+// Title Screen Functions Definition
 //----------------------------------------------------------------------------------
 
-// Gameplay Screen Initialization logic
-void InitGameplayScreen(void)
+// Title Screen Initialization logic
+void InitTitleScreen(void)
 {
-    // TODO: Initialize GAMEPLAY screen variables here!
+    // TODO: Initialize TITLE screen variables here!
     framesCounter = 0;
     finishScreen = 0;
 }
 
-// Gameplay Screen Update logic
-void UpdateGameplayScreen(void)
+// Title Screen Update logic
+void UpdateTitleScreen(void)
 {
-    // TODO: Update GAMEPLAY screen variables here!
+    // TODO: Update TITLE screen variables here!
 
-    // Press enter or tap to change to ENDING screen
+    // Press enter or tap to change to GAMEPLAY screen
     if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
     {
-        finishScreen = 1;
+        //finishScreen = 1;   // OPTIONS
+        finishScreen = 2;   // GAMEPLAY
         PlaySound(fxCoin);
     }
 }
 
-// Gameplay Screen Draw logic
-void DrawGameplayScreen(void)
+// Title Screen Draw logic
+void DrawTitleScreen(void)
 {
-    // TODO: Draw GAMEPLAY screen here!
-    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), PURPLE);
-    DrawTextEx(font, "GAMEPLAY SCREEN", Vector2{ 20, 10 }, font.baseSize*3.0f, 4, MAROON);
-    DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, MAROON);
+    // TODO: Draw TITLE screen here!
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), GREEN);
+    DrawTextEx(font, "TITLE SCREEN", (Vector2){ 20, 10 }, font.baseSize*3, 4, DARKGREEN);
+    DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKGREEN);
 }
 
-// Gameplay Screen Unload logic
-void UnloadGameplayScreen(void)
+// Title Screen Unload logic
+void UnloadTitleScreen(void)
 {
-    // TODO: Unload GAMEPLAY screen variables here!
+    // TODO: Unload TITLE screen variables here!
 }
 
-// Gameplay Screen should finish?
-int FinishGameplayScreen(void)
+// Title Screen should finish?
+int FinishTitleScreen(void)
 {
     return finishScreen;
 }

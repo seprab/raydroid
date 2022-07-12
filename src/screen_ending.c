@@ -2,7 +2,7 @@
 *
 *   raylib - Advance Game template
 *
-*   Title Screen Functions Definitions (Init, Update, Draw, Unload)
+*   Ending Screen Functions Definitions (Init, Update, Draw, Unload)
 *
 *   Copyright (c) 2014-2022 Ramon Santamaria (@raysan5)
 *
@@ -33,48 +33,47 @@ static int framesCounter = 0;
 static int finishScreen = 0;
 
 //----------------------------------------------------------------------------------
-// Title Screen Functions Definition
+// Ending Screen Functions Definition
 //----------------------------------------------------------------------------------
 
-// Title Screen Initialization logic
-void InitTitleScreen(void)
+// Ending Screen Initialization logic
+void InitEndingScreen(void)
 {
-    // TODO: Initialize TITLE screen variables here!
+    // TODO: Initialize ENDING screen variables here!
     framesCounter = 0;
     finishScreen = 0;
 }
 
-// Title Screen Update logic
-void UpdateTitleScreen(void)
+// Ending Screen Update logic
+void UpdateEndingScreen(void)
 {
-    // TODO: Update TITLE screen variables here!
+    // TODO: Update ENDING screen variables here!
 
-    // Press enter or tap to change to GAMEPLAY screen
+    // Press enter or tap to return to TITLE screen
     if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
     {
-        //finishScreen = 1;   // OPTIONS
-        finishScreen = 2;   // GAMEPLAY
+        finishScreen = 1;
         PlaySound(fxCoin);
     }
 }
 
-// Title Screen Draw logic
-void DrawTitleScreen(void)
+// Ending Screen Draw logic
+void DrawEndingScreen(void)
 {
-    // TODO: Draw TITLE screen here!
-    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), GREEN);
-    DrawTextEx(font, "TITLE SCREEN", Vector2{ 20, 10 }, font.baseSize*3.0f, 4, DARKGREEN);
-    DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKGREEN);
+    // TODO: Draw ENDING screen here!
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), BLUE);
+    DrawTextEx(font, "ENDING SCREEN", (Vector2){ 20, 10 }, font.baseSize*3, 4, DARKBLUE);
+    DrawText("PRESS ENTER or TAP to RETURN to TITLE SCREEN", 120, 220, 20, DARKBLUE);
 }
 
-// Title Screen Unload logic
-void UnloadTitleScreen(void)
+// Ending Screen Unload logic
+void UnloadEndingScreen(void)
 {
-    // TODO: Unload TITLE screen variables here!
+    // TODO: Unload ENDING screen variables here!
 }
 
-// Title Screen should finish?
-int FinishTitleScreen(void)
+// Ending Screen should finish?
+int FinishEndingScreen(void)
 {
     return finishScreen;
 }

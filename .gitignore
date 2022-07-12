@@ -9,3 +9,5 @@ _build/*
 _bin/
 .vs/
 .vscode/
+nul.d
+android.raylib_game/*
