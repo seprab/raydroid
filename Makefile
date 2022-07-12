@@ -33,7 +33,7 @@ PROJECT_NAME          ?= raylib_game
 PROJECT_VERSION       ?= 1.0
 PROJECT_BUILD_PATH    ?= .
 
-RAYLIB_PATH           ?= C:\raylib\raylib
+RAYLIB_PATH           ?= raylib
 GAME_SOURCE_PATH      ?= src
 
 # Locations of raylib.h and libraylib.a/libraylib.so

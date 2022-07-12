@@ -25,7 +25,7 @@ SHELL=cmd
 GAME_SOURCE_PATH      ?= src
 # Define required raylib variables
 PLATFORM               ?= PLATFORM_ANDROID
-RAYLIB_PATH            ?= C:\raylib\raylib
+RAYLIB_PATH            ?= raylib
 
 # Define Android architecture (armeabi-v7a, arm64-v8a, x86, x86-64) and API version
 # Starting in 2019 using ARM64 is mandatory for published apps,
