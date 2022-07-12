@@ -25,6 +25,7 @@ I'm just learning and practicing the following:
 It must be built with Make using CMD (Windows tested):
 
 ### Pre-requisites:
+- Use raylib bb87d2a (this should be automatically cloned with the submodule). The latest version is not working
 - NDK 21.4.7075529 and save it in C:/android-ndk
 - SDK Min: API 29 Max: I tested API 33
 - SDK Build Tools 29.0.3
