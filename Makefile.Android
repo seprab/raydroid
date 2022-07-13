@@ -61,7 +61,7 @@ PROJECT_LIBRARY_NAME   ?= main
 PROJECT_BUILD_ID       ?= android
 PROJECT_BUILD_PATH     ?= $(PROJECT_BUILD_ID).$(PROJECT_NAME)
 PROJECT_RESOURCES_PATH ?= resources
-PROJECT_SOURCE_FILES   ?= this_ignored_because_passed_from_makefile.c
+PROJECT_SOURCE_FILES   ?= this_ignored_because_passed_from_makefile
 NATIVE_APP_GLUE_PATH    = $(ANDROID_NDK)/sources/android/native_app_glue
 
 # Some source files are placed in directories, when compiling to some 
@@ -96,28 +96,28 @@ endif
 
 # Compiler and archiver
 ifeq ($(ANDROID_ARCH),ARM)
-    CC = $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi$(ANDROID_API_VERSION)-clang
+    CC = $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi$(ANDROID_API_VERSION)-clang++
     AR = $(ANDROID_TOOLCHAIN)/bin/arm-linux-androideabi-ar
 endif
 ifeq ($(ANDROID_ARCH),ARM64)
-    CC = $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android$(ANDROID_API_VERSION)-clang
+    CC = $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android$(ANDROID_API_VERSION)-clang++
     AR = $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android-ar
 endif
 ifeq ($(ANDROID_ARCH),x86)
-    CC = $(ANDROID_TOOLCHAIN)/bin/i686-linux-android$(ANDROID_API_VERSION)-clang
+    CC = $(ANDROID_TOOLCHAIN)/bin/i686-linux-android$(ANDROID_API_VERSION)-clang++
     AR = $(ANDROID_TOOLCHAIN)/bin/i686-linux-android-ar
 endif
 ifeq ($(ANDROID_ARCH),x86_64)
-    CC = $(ANDROID_TOOLCHAIN)/bin/x86_64-linux-android$(ANDROID_API_VERSION)-clang
+    CC = $(ANDROID_TOOLCHAIN)/bin/x86_64-linux-android$(ANDROID_API_VERSION)-clang++
     AR = $(ANDROID_TOOLCHAIN)/bin/x86_64-linux-android-ar
 endif
 
 # Compiler flags for arquitecture
 ifeq ($(ANDROID_ARCH),ARM)
-    CFLAGS = -std=c99 -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16
+    CFLAGS = -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16
 endif
 ifeq ($(ANDROID_ARCH),ARM64)
-    CFLAGS = -std=c99 -target aarch64 -mfix-cortex-a53-835769
+    CFLAGS = -target aarch64 -mfix-cortex-a53-835769
 endif
 # Compilation functions attributes options
 CFLAGS += -ffunction-sections -funwind-tables -fstack-protector-strong -fPIC
@@ -142,7 +142,7 @@ LDFLAGS += -L. -L$(PROJECT_BUILD_PATH)/obj -L$(PROJECT_BUILD_PATH)/lib/$(ANDROID
 LDLIBS = -lm -lc -lraylib -llog -landroid -lEGL -lGLESv2 -lOpenSLES -ldl
 
 # Generate target objects list from PROJECT_SOURCE_FILES
-OBJS = $(patsubst %.c, $(PROJECT_BUILD_PATH)/obj/%.o, $(PROJECT_SOURCE_FILES))
+OBJS = $(patsubst %.cpp, $(PROJECT_BUILD_PATH)/obj/%.o, $(PROJECT_SOURCE_FILES))
 
 # Android APK building process... some steps required...
 # NOTE: typing 'make' will invoke the default target entry called 'all',
@@ -259,9 +259,9 @@ config_project_package:
 compile_project_code: $(OBJS)
 	$(CC) -o $(PROJECT_BUILD_PATH)/lib/$(ANDROID_ARCH_NAME)/lib$(PROJECT_LIBRARY_NAME).so $(OBJS) -shared $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS)
 
-# Compile all .c files required into object (.o) files
+# Compile all .cpp files required into object (.o) files
 # NOTE: Those files will be linked into a shared library
-$(PROJECT_BUILD_PATH)/obj/%.o:$(GAME_SOURCE_PATH)/%.c
+$(PROJECT_BUILD_PATH)/obj/%.o:$(GAME_SOURCE_PATH)/%.cpp
 	$(CC) -c $^ -o $@ $(INCLUDE_PATHS) $(CFLAGS) --sysroot=$(ANDROID_TOOLCHAIN)/sysroot
     
 # Compile project .java code into .class (Java bytecode) 
