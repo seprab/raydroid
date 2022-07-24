@@ -13,7 +13,7 @@ I'm just learning and practicing the following:
 - [ ] Configure the project to build a Windows executable with Make
 - [ ] Configure the project to build a Windows executable with VS2022
 - [x] Configure the project to build an Android APK with Make, src in C
-- [ ] Configure the project to build an Android APK with Make, src in C++
+- [x] Configure the project to build an Android APK with Make, src in C++
 - [ ] Plan next steps (ex. planning and creating a minigame)
 
 ## How to clone and how to work on it
@@ -39,6 +39,7 @@ It must be built with Make using CMD (Windows tested):
     1. Navigate back to the root directory
     2. Call `mingw32-make PLATFORM=PLATFORM_ANDROID`
 
+>The mingw32-make command works for me because I configured the envioronment path to `C:\w64devkit\bin`. I downloaded it from https://github.com/skeeto/w64devkit/releases/download/v1.15.0/w64devkit-1.15.0.zip
 
 ## Windows: How to build it
 It can be built with make or VS:
