@@ -49,7 +49,7 @@ endif
 # Required path variables
 # NOTE: JAVA_HOME must be set to JDK (using OpenJDK 13)
 JAVA_HOME              ?= C:/open-jdk
-ANDROID_HOME           ?= C:/Users/SergioPradaBarrios/AppData/Local/Android/Sdk
+ANDROID_HOME           ?= C:/Users/sergi/AppData/Local/Android/Sdk
 ANDROID_NDK            ?= C:/android-ndk
 ANDROID_TOOLCHAIN      ?= $(ANDROID_NDK)/toolchains/llvm/prebuilt/windows-x86_64
 ANDROID_BUILD_TOOLS    ?= $(ANDROID_HOME)/build-tools/29.0.3
@@ -96,11 +96,11 @@ endif
 
 # Compiler and archiver
 ifeq ($(ANDROID_ARCH),ARM)
-    CC = $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi$(ANDROID_API_VERSION)-clang++
+    CC = $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi$(ANDROID_API_VERSION)-clang
     AR = $(ANDROID_TOOLCHAIN)/bin/arm-linux-androideabi-ar
 endif
 ifeq ($(ANDROID_ARCH),ARM64)
-    CC = $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android$(ANDROID_API_VERSION)-clang++
+    CC = $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android$(ANDROID_API_VERSION)-clang
     AR = $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android-ar
 endif
 ifeq ($(ANDROID_ARCH),x86)
@@ -114,10 +114,10 @@ endif
 
 # Compiler flags for arquitecture
 ifeq ($(ANDROID_ARCH),ARM)
-    CFLAGS = -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16
+    CFLAGS = -std=c++14 -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16
 endif
 ifeq ($(ANDROID_ARCH),ARM64)
-    CFLAGS = -target aarch64 -mfix-cortex-a53-835769
+    CFLAGS = -std=c++14 -target aarch64 -mfix-cortex-a53-835769
 endif
 # Compilation functions attributes options
 CFLAGS += -ffunction-sections -funwind-tables -fstack-protector-strong -fPIC
@@ -271,7 +271,7 @@ compile_project_class:
 # Compile .class files into Dalvik executable bytecode (.dex)
 # NOTE: Since Android 5.0, Dalvik interpreter (JIT) has been replaced by ART (AOT)
 compile_project_class_dex:
-# $(ANDROID_BUILD_TOOLS)/dx --verbose --dex --output=$(PROJECT_BUILD_PATH)/bin/classes.dex $(PROJECT_BUILD_PATH)/obj
+
 	$(JAVA_HOME)/bin/java -Xmx1024M -Xss1m -classpath $(ANDROID_BUILD_TOOLS)/lib -jar $(ANDROID_BUILD_TOOLS)/lib/dx.jar --dex --output=$(PROJECT_BUILD_PATH)/bin/classes.dex $(PROJECT_BUILD_PATH)/obj
 
 # Create Android APK package: bin/$(PROJECT_NAME).unsigned.apk
