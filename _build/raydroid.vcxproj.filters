@@ -9,27 +9,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\game\src\screens.h">
+    <ClInclude Include="..\src\screens.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\game\src\raydroid.cpp">
+    <ClCompile Include="..\src\raylib_game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game\src\screen_ending.cpp">
+    <ClCompile Include="..\src\screen_ending.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game\src\screen_gameplay.cpp">
+    <ClCompile Include="..\src\screen_gameplay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game\src\screen_logo.cpp">
+    <ClCompile Include="..\src\screen_logo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game\src\screen_options.cpp">
+    <ClCompile Include="..\src\screen_options.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\game\src\screen_title.cpp">
+    <ClCompile Include="..\src\screen_title.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

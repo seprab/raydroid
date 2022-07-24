@@ -169,15 +169,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\game\src\screens.h" />
+    <ClInclude Include="..\src\screens.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\game\src\raydroid.cpp" />
-    <ClCompile Include="..\game\src\screen_ending.cpp" />
-    <ClCompile Include="..\game\src\screen_gameplay.cpp" />
-    <ClCompile Include="..\game\src\screen_logo.cpp" />
-    <ClCompile Include="..\game\src\screen_options.cpp" />
-    <ClCompile Include="..\game\src\screen_title.cpp" />
+    <ClCompile Include="..\src\raylib_game.cpp" />
+    <ClCompile Include="..\src\screen_ending.cpp" />
+    <ClCompile Include="..\src\screen_gameplay.cpp" />
+    <ClCompile Include="..\src\screen_logo.cpp" />
+    <ClCompile Include="..\src\screen_options.cpp" />
+    <ClCompile Include="..\src\screen_title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="raylib.vcxproj">
