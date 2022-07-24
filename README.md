@@ -11,7 +11,7 @@ I'm just learning and practicing the following:
 
 ## Roadmap
 - [ ] Configure the project to build a Windows executable with Make
-- [ ] Configure the project to build a Windows executable with VS2022
+- [x] Configure the project to build a Windows executable with VS2022
 - [x] Configure the project to build an Android APK with Make, src in C
 - [x] Configure the project to build an Android APK with Make, src in C++
 - [ ] Plan next steps (ex. planning and creating a minigame)
