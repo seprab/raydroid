@@ -14,7 +14,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\raylib_game.cpp">
+    <ClCompile Include="..\src\raylib_game.cppcpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\screen_ending.cpp">

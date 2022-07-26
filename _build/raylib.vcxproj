@@ -66,25 +66,25 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\_bin\Debug\</OutDir>
+    <OutDir>..\desktop.raylib_game\Debug\</OutDir>
     <IntDir>obj\x64\Debug\raylib\</IntDir>
     <TargetName>raylib</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\_bin\Debug\</OutDir>
+    <OutDir>..\desktop.raylib_game\Debug\</OutDir>
     <IntDir>obj\x86\Debug\raylib\</IntDir>
     <TargetName>raylib</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\_bin\Release\</OutDir>
+    <OutDir>..\desktop.raylib_game\Release\</OutDir>
     <IntDir>obj\x64\Release\raylib\</IntDir>
     <TargetName>raylib</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\_bin\Release\</OutDir>
+    <OutDir>..\desktop.raylib_game\Release\</OutDir>
     <IntDir>obj\x86\Release\raylib\</IntDir>
     <TargetName>raylib</TargetName>
     <TargetExt>.lib</TargetExt>
