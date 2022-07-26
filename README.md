@@ -13,6 +13,7 @@ I'm just learning and practicing the following:
 - [x] Configure the project to build a Windows executable with Make
 - [x] Configure the project to build a Windows executable with VS2022
 - [x] Configure the project to build an Android APK with Make, src in C++
+- [ ] Change output build folder when using VS to `desktop.raylib_game/[Debug/Release]/`
 - [ ] Plan next steps (ex. planning and creating a minigame)
 
 ## How to clone and how to work on it
@@ -45,7 +46,7 @@ It can be built with make or VS:
 
 ### VS2022:
 1. Simply open the solution and build.
->There's a need to manually copy de resources folder to `_bin/Debug/`
+>There's a need to manually copy de resources folder to `_bin/Debug/` when building the solution. When using the local windows debugger (play button), it plays sounds as expected.
 
 ### MAKE:
 1. Download w64devkit https://github.com/skeeto/w64devkit/releases
@@ -99,8 +100,6 @@ _TODO: Show your game to the world, animated GIFs recommended!._
 ## Developers
 
  - SepraB - Doing whatever
- - $(Developer 02) - $(Role/Tasks Developed)
- - $(Developer 03) - $(Role/Tasks Developed)
 
 ## Links
 
