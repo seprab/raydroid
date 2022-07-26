@@ -11,5 +11,6 @@ _bin/
 .vscode/
 nul.d
 android.raylib_game/*
+desktop.raylib_game/*
 *.exe
 *.o

@@ -35,6 +35,7 @@ PROJECT_BUILD_PATH    ?= desktop.$(PROJECT_NAME)
 
 RAYLIB_PATH           ?= raylib
 GAME_SOURCE_PATH      ?= src
+PROJECT_RESOURCES_PATH ?= resources
 
 # Locations of raylib.h and libraylib.a/libraylib.so
 # NOTE: Those variables are only used for PLATFORM_OS: LINUX, BSD
@@ -244,6 +245,9 @@ PROJECT_SOURCE_FILES ?= \
 
 # Define all object files from source files
 OBJS = $(patsubst %.cpp, %.o, $(PROJECT_SOURCE_FILES))
+# Change the path to all files to $(PROJECT_BUILD_PATH)/obj/{filename}.o 
+SUBTED = $(subst $(PROJECT_NAME),$(PROJECT_BUILD_PATH)/obj/$(PROJECT_NAME),$(OBJS))
+SUBTED := $(subst .o  ,.o $(PROJECT_BUILD_PATH)/obj/,$(SUBTED))
 
 # Define processes to execute
 #------------------------------------------------------------------------------------------------
@@ -261,17 +265,18 @@ endif
 all:
 	mkdir -p $(PROJECT_BUILD_PATH)
 	mkdir -p $(PROJECT_BUILD_PATH)\obj
+	mkdir -p $(PROJECT_BUILD_PATH)\$(PROJECT_RESOURCES_PATH)
 	$(MAKE) $(MAKEFILE_PARAMS)
 
 # Project target defined by PROJECT_NAME
 $(PROJECT_NAME): $(OBJS)
-	echo %%%%%%%%%% Printing a flag A %%%%%%%%%%%%%
-	$(CC) -o $(PROJECT_NAME)$(EXT) $(OBJS) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
+	$(CC) -o $(PROJECT_BUILD_PATH)/$(PROJECT_NAME)$(EXT) $(SUBTED) $(CFLAGS) $(INCLUDE_PATHS) $(LDFLAGS) $(LDLIBS) -D$(PLATFORM)
+	C:\Windows\System32\xcopy $(PROJECT_RESOURCES_PATH) $(PROJECT_BUILD_PATH)\$(PROJECT_RESOURCES_PATH) /Y /E /F
+
 
 # Compile source files
 # NOTE: This pattern will compile every module defined on $(OBJS)
 %.o: $(GAME_SOURCE_PATH)/%.cpp
-	echo %%%%%%%%%% Printing a flag B %%%%%%%%%%%%%
 	$(CC) -c $< -o $(PROJECT_BUILD_PATH)/obj/$@ $(CFLAGS) $(INCLUDE_PATHS) -D$(PLATFORM)
 
 # Clean everything
