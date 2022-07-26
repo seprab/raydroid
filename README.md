@@ -30,6 +30,7 @@ It must be built with Make using CMD (Windows tested):
 - NDK 21.4.7075529 and save it in C:/android-ndk. -> For referece, I downloaded it from [here](https://download.java.net/java/GA/jdk13.0.2/d4173c853231432d94f001e99d882ca7/8/GPL/openjdk-13.0.2_windows-x64_bin.zip).
 - SDK Min: API 29 Max: I tested API 33
 - SDK Build Tools 29.0.3
+- Set SDK path in `Makefile.Android`
 - OpenJDK 13 and save it in C:/open-jdk
 
 ### Process:
