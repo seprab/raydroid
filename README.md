@@ -44,7 +44,8 @@ It must be built with Make using CMD (Windows tested):
 It can be built with make or VS:
 
 ### VS2022:
-1. Simply open the solution and build
+1. Simply open the solution and build.
+>There's a need to manually copy de resources folder to `_bin/Debug/`
 
 ### MAKE:
 1. Download w64devkit https://github.com/skeeto/w64devkit/releases
@@ -52,7 +53,8 @@ It can be built with make or VS:
 3. Manually execute w64devkit.exe from the installation path
 4. From the w64devkit terminal move raydroid directory
 5. Call `make`
-6. Execute the program by calling `./_bin/Debug/raydroid.exe`
+6. Execute the program by calling `./desktop.raylib_game/raydroid.exe`
+>If I ain't wrong, I need to compile raylib first. Go to `raylib/src` and call `make`.
 
 ### Notes
 > * Both build methods cannot be used sequentially. Before switching build methods, call `git reset --hard && git clean -fdx`
