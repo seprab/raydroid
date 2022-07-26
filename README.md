@@ -1,6 +1,7 @@
 # RayDroid
 
-![RayDroid](screenshots/screenshot000.png "RayDroid")
+<img align="left" src="https://github.com/raysan5/raylib/blob/master/logo/raylib_logo_animation.gif" width="288px">
+<!-- ![RayDroid](screenshots/screenshot000.png "RayDroid") -->
 
 ## Description
 I'm just learning and practicing the following:
