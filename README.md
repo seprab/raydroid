@@ -63,25 +63,6 @@ It can be built with make or VS:
 > * Both build methods cannot be used sequentially. Before switching build methods, call `git reset --hard && git clean -fdx`
 > * Invoking w64devkit from Win terminal or Git bash, and then calling `make` doesn't complete the build.
 
-### Adding new source files to game when using MAKE
-Must be related in [_build\raydroid.make](_build\raydroid.make)
-```
-$(OBJDIR)/<new file name>.o: ../game/src/<new file name>.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-```
-### Building for other OpenGL targets
-If you need to build for a different OpenGL version than the default (OpenGL 3.3) you can specify an openGL version in your premake command line. Just modify the bat file or add the following to your command line
-
-#### For OpenGL 1.1
-    --graphics-api=opengl11
-
-#### For OpenGL 2.1
-    --graphics-api=opengl21
-
-#### For OpenGL 4.3
-    --graphics-api=opengl43
-
 ## Features
 
  - $(Game Feature 01)
