@@ -14,7 +14,7 @@
 
 #include "raylib.h"
 #include "screens.h"    // NOTE: Declares global (extern) variables and screens functions
-#include "../raylib/src/external/glfw/include/GLFW/glfw3.h"
+//#include "../raylib/src/external/glfw/include/GLFW/glfw3.h"
 
 #if defined(PLATFORM_WEB)
     #include <emscripten/emscripten.h>
@@ -287,8 +287,8 @@ static void UpdateDrawFrame(void)
         // Draw full screen rectangle in front of everything
         if (onTransition) DrawTransition();
 
-        //DrawFPS(10, 10);
-        glFinish();
+        DrawFPS(10, 10);
+        //glFinish();
     EndDrawing();
     //----------------------------------------------------------------------------------
 }
