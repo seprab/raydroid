@@ -42,6 +42,24 @@ It must be built with Make using CMD (Windows tested):
 
 >The mingw32-make command works for me because I configured the envioronment path to `C:\w64devkit\bin`. I downloaded it from https://github.com/skeeto/w64devkit/releases/download/v1.15.0/w64devkit-1.15.0.zip
 
+### Troubleshooting:
+1. The audio might not work as it is. https://github.com/raysan5/raylib/issues/2118
+Workaround:  
+```
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -535,6 +535,10 @@ ifeq ($(RAYLIB_MODULE_MODELS),TRUE)
+ endif
+ ifeq ($(RAYLIB_MODULE_AUDIO),TRUE)
+     OBJS += raudio.o
++    # XXX: https://github.com/raysan5/raylib/issues/2118
++    ifeq ($(PLATFORM),PLATFORM_ANDROID)
++      CFLAGS += -DMA_SUPPORT_AAUDIO
++    endif
+ endif
+ ifeq ($(RAYLIB_MODULE_RAYGUI),TRUE)
+     OBJS += raygui.o
+```
 ## Windows: How to build it
 It can be built with make or VS:
 
