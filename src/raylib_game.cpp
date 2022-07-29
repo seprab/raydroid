@@ -16,10 +16,6 @@
 #include "screens.h"    // NOTE: Declares global (extern) variables and screens functions
 //#include "../raylib/src/external/glfw/include/GLFW/glfw3.h"
 
-#if defined(PLATFORM_WEB)
-    #include <emscripten/emscripten.h>
-#endif
-
 //----------------------------------------------------------------------------------
 // Shared Variables Definition (global)
 // NOTE: Those variables are shared between modules through screens.h
@@ -32,8 +28,6 @@ Sound fxCoin = { 0 };
 //----------------------------------------------------------------------------------
 // Local Variables Definition (local to this module)
 //----------------------------------------------------------------------------------
-static const int screenWidth = 800;
-static const int screenHeight = 450;
 
 // Required variables to manage screen transitions (fade-in, fade-out)
 static float transAlpha = 0.0f;
@@ -60,8 +54,7 @@ int main(void)
 {
     // Initialization
     //---------------------------------------------------------
-    InitWindow(screenWidth, screenHeight, "RayDroid");
-
+    InitWindow(0, 0, "RayDroid"); //Make app window 1:1 to screen size https://github.com/raysan5/raylib/issues/1731
     InitAudioDevice();      // Initialize audio device
 
     // Load global data (assets that must be available in all screens, i.e. font)
@@ -76,9 +69,6 @@ int main(void)
     currentScreen = LOGO;
     InitLogoScreen();
 
-#if defined(PLATFORM_WEB)
-    emscripten_set_main_loop(UpdateDrawFrame, 60, 1);
-#else
     SetTargetFPS(60);       // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
@@ -87,7 +77,6 @@ int main(void)
     {
         UpdateDrawFrame();
     }
-#endif
 
     // De-Initialization
     //--------------------------------------------------------------------------------------

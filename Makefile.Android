@@ -79,7 +79,7 @@ APP_VERSION_NAME       ?= 1.0
 APP_ICON_LDPI          ?= $(RAYLIB_PATH)\logo\raylib_36x36.png
 APP_ICON_MDPI          ?= $(RAYLIB_PATH)\logo\raylib_48x48.png
 APP_ICON_HDPI          ?= $(RAYLIB_PATH)\logo\raylib_72x72.png
-APP_SCREEN_ORIENTATION ?= landscape
+APP_SCREEN_ORIENTATION ?= portrait
 APP_KEYSTORE_PASS      ?= raylib
 
 # Library type used for raylib: STATIC (.a) or SHARED (.so/.dll)
