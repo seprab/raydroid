@@ -14,6 +14,7 @@
 
 #include "raylib.h"
 #include "screens.h"    // NOTE: Declares global (extern) variables and screens functions
+#include "glfw3.h"
 //#include "../raylib/src/external/glfw/include/GLFW/glfw3.h"
 
 //----------------------------------------------------------------------------------
@@ -277,7 +278,7 @@ static void UpdateDrawFrame(void)
         if (onTransition) DrawTransition();
 
         DrawFPS(10, 10);
-        //glFinish();
+        glFinish();
     EndDrawing();
     //----------------------------------------------------------------------------------
 }

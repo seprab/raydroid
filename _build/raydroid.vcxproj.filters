@@ -12,6 +12,18 @@
     <ClInclude Include="..\src\screens.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\hand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\stack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\deck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\screen_ending.cpp">
@@ -30,6 +42,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\raylib_game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\stack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\hand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\deck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\card.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -99,7 +99,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DEBUG;PLATFORM_DESKTOP;_WINSOCK_DEPRECATED_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\game;..\game\src;..\raylib\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\game;..\game\src;..\raylib\src;..\raylib\src\external\glfw\include\GLFW;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
     </ClCompile>
@@ -169,15 +169,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\card.h" />
+    <ClInclude Include="..\src\deck.h" />
+    <ClInclude Include="..\src\hand.h" />
     <ClInclude Include="..\src\screens.h" />
+    <ClInclude Include="..\src\stack.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\card.cpp" />
+    <ClCompile Include="..\src\deck.cpp" />
+    <ClCompile Include="..\src\hand.cpp" />
     <ClCompile Include="..\src\raylib_game.cpp" />
     <ClCompile Include="..\src\screen_ending.cpp" />
     <ClCompile Include="..\src\screen_gameplay.cpp" />
     <ClCompile Include="..\src\screen_logo.cpp" />
     <ClCompile Include="..\src\screen_options.cpp" />
     <ClCompile Include="..\src\screen_title.cpp" />
+    <ClCompile Include="..\src\stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="raylib.vcxproj">
