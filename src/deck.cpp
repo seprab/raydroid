@@ -5,6 +5,16 @@
 
 Deck::Deck()
 {
+	//I moved the code from here to Deck::Initialize(), because the constructor was being called before
+	//opengl was initialized (or InitWindow invoked).
+}
+
+Deck::~Deck()
+{
+}
+
+void Deck::Initialize()
+{
 	Image img = GenImageChecked(100, 200, 25, 25, RED, MAROON);
 	Texture cardBack = LoadTextureFromImage(img);
 	UnloadImage(img);

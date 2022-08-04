@@ -9,5 +9,8 @@ public:
 	std::vector<Card> Cards;
 
 	Deck();
+	~Deck();
+	
+	void Initialize();
 };
 

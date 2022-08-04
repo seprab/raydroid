@@ -54,7 +54,12 @@ int main(void)
 {
     // Initialization
     //---------------------------------------------------------
+#if PLATFORM_ANDROID
     InitWindow(0, 0, "RayDroid"); //Make app window 1:1 to screen size https://github.com/raysan5/raylib/issues/1731
+#elif PLATFORM_DESKTOP
+	InitWindow(720, 1280, "Raydroid");
+#endif
+
     InitAudioDevice();      // Initialize audio device
 
     // Load global data (assets that must be available in all screens, i.e. font)

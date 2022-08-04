@@ -35,6 +35,15 @@
 static int framesCounter = 0;
 static int finishScreen = 0;
 
+// all the cards in the game
+Deck cards;
+
+// the deck of cards we can pull from
+Stack DrawDeck{ 30, 20 };
+
+// the cards we have pulled
+Hand PlayerHand;
+
 //----------------------------------------------------------------------------------
 // Gameplay Screen Functions Definition
 //----------------------------------------------------------------------------------
@@ -45,6 +54,9 @@ void InitGameplayScreen(void)
     // TODO: Initialize GAMEPLAY screen variables here!
     framesCounter = 0;
     finishScreen = 0;
+	cards.Initialize();
+	DrawDeck.FromDeck(cards);
+	DrawDeck.Shuffle();
 }
 
 // Gameplay Screen Update logic
@@ -53,74 +65,60 @@ void UpdateGameplayScreen(void)
     // TODO: Update GAMEPLAY screen variables here!
 
     // Press enter or tap to change to ENDING screen
-    /*if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+    if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
     {
-        finishScreen = 1;
+        //finishScreen = 1;
         PlaySound(fxCoin);
-    }*/
+    }
 	
 
-	// all the cards in the game
-	Deck cards;
+	bool handled = false;
 
-	// the deck of cards we can pull from
-	Stack DrawDeck{ 30, 20 };
-	DrawDeck.FromDeck(cards);
-	DrawDeck.Shuffle();
-
-	// the cards we have pulled
-	Hand PlayerHand;
-
-	while (!WindowShouldClose())
+	// check to see if we are dragging a card
+	if (PlayerHand.SelectedCard != nullptr)
 	{
-		bool handled = false;
-
-		// check to see if we are dragging a card
-		if (PlayerHand.SelectedCard != nullptr)
+		if (PlayerHand.SelectedCard->PointIn(GetMousePosition()))
 		{
-			if (PlayerHand.SelectedCard->PointIn(GetMousePosition()))
+			if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+				PlayerHand.SelectedCard->Position = Vector2Add(PlayerHand.SelectedCard->Position, GetMouseDelta());
+			else
+				PlayerHand.Deselect();
+			handled = true;
+		}
+	}
+	else if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) // check to see if we are selecting a card from the hand
+	{
+		for (Card* card : PlayerHand.Cards)
+		{
+			if (card->PointIn(GetMousePosition()))
 			{
-				if (IsMouseButtonDown(MOUSE_LEFT_BUTTON))
-					PlayerHand.SelectedCard->Position = Vector2Add(PlayerHand.SelectedCard->Position, GetMouseDelta());
-				else
-					PlayerHand.Deselect();
-				handled = true;
+				// activate this card so we can start dragging it.
+				PlayerHand.Select(card);
+				break;
 			}
 		}
-		else if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) // check to see if we are selecting a card from the hand
+	}
+
+	// check to see if we are interacting with the draw deck
+	if (!handled)
+	{
+		Card* deckTop = DrawDeck.Top();
+		if (deckTop != nullptr)
 		{
-			for (Card* card : PlayerHand.Cards)
+			if (deckTop->PointIn(GetMousePosition()))
 			{
-				if (card->PointIn(GetMousePosition()))
+				if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
 				{
-					// activate this card so we can start dragging it.
-					PlayerHand.Select(card);
-					break;
+					// show the top card
+					deckTop->FaceUp = true;
 				}
-			}
-		}
-
-		// check to see if we are interacting with the draw deck
-		if (!handled)
-		{
-			Card* deckTop = DrawDeck.Top();
-			if (deckTop != nullptr)
-			{
-				if (deckTop->PointIn(GetMousePosition()))
+				else if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && PlayerHand.SelectedCard == nullptr)
 				{
-					if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON))
-					{
-						// show the top card
-						deckTop->FaceUp = true;
-					}
-					else if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && PlayerHand.SelectedCard == nullptr)
-					{
-						// take the card into a hand and start dragging it.
-						PlayerHand.AddCard(DrawDeck.PopTop());
+					// take the card into a hand and start dragging it.
+					PlayerHand.AddCard(DrawDeck.PopTop());
 
-						// always show the face of drawn cards
-						PlayerHand.SelectedCard->FaceUp = true;
-					}
+					// always show the face of drawn cards
+					PlayerHand.SelectedCard->FaceUp = true;
 				}
 			}
 		}
@@ -134,6 +132,8 @@ void DrawGameplayScreen(void)
     DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), PURPLE);
     DrawTextEx(font, "GAMEPLAY SCREEN", Vector2{ 20, 10 }, font.baseSize*3.0f, 4, MAROON);
     DrawText("PRESS ENTER or TAP to JUMP to ENDING SCREEN", 130, 220, 20, MAROON);
+	DrawDeck.Draw();
+	PlayerHand.Draw();
 }
 
 // Gameplay Screen Unload logic
