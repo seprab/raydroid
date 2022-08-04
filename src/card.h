@@ -17,9 +17,11 @@ public:
 	int Value = 0;
 	bool FaceUp = false;
 
+	Card(Vector2 position, CardSuit suit, int value, bool faceUp, Texture& cardBack);
 	Color GetCardColor();
 	Rectangle GetScreenRect();
 	void Draw();
 	bool PointIn(const Vector2& pos);
+	Texture* GetCardTexture();
 };
 

@@ -49,7 +49,7 @@ Card* Stack::PopTop()
 
 void Stack::Draw()
 {
-	Rectangle baseRect = Rectangle{ Pos.x,Pos.y, (float)CardBack.width, (float)CardBack.height };
+	Rectangle baseRect = Rectangle{ Pos.x,Pos.y, static_cast<float>(Cards[0]->CardBack.width), static_cast<float>(Cards[0]->CardBack.height) };
 
 	// draw a gray rectangle where this stack is
 	DrawRectangleRec(baseRect, DARKGRAY);

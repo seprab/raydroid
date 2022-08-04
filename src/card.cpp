@@ -1,5 +1,10 @@
 #include "card.h"
 
+Card::Card(Vector2 position, CardSuit suit, int value, bool faceUp, Texture& cardBack)
+	:Position(position), Suit(suit), Value(value), FaceUp(faceUp), CardBack(cardBack)
+{
+}
+
 Color Card::GetCardColor()
 {
 	switch (Suit)
@@ -82,4 +87,9 @@ void Card::Draw()
 bool Card::PointIn(const Vector2& pos)
 {
     return false;
+}
+
+Texture *Card::GetCardTexture()
+{
+	return &CardBack;
 }

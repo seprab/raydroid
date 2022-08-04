@@ -58,9 +58,7 @@ void UpdateGameplayScreen(void)
         finishScreen = 1;
         PlaySound(fxCoin);
     }*/
-	Image img = GenImageChecked(100, 200, 25, 25, RED, MAROON);
-	CardBack = LoadTextureFromImage(img);
-	UnloadImage(img);
+	
 
 	// all the cards in the game
 	Deck cards;
