@@ -86,7 +86,7 @@ void Card::Draw()
 }
 bool Card::PointIn(const Vector2& pos)
 {
-    return false;
+	return CheckCollisionPointRec(pos, GetScreenRect());
 }
 
 Texture *Card::GetCardTexture()
