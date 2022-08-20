@@ -17,10 +17,11 @@ I'm just learning and practicing the following:
 
 The steps above are working by [653dc34442](https://github.com/seprab/raydroid/tree/653dc34442d1b17e65faff112aeabb87877477ab)
 
+> Additional note: The project is not compiling anymore for Android as Clang++ cannot access the standard library used in C++. The flag -stdlib=libc++ seems to help but throws more errors with raylib libraries. For now, I will continue on desktop development.
+
 So, what about creating an RPG with cards interactions. I recall king made in Unity
-- [ ] Follow cards example by JeffM2501 [ref link](https://github.com/raylib-extras/examples-cpp/tree/main/cards)
+- [x] Follow cards example by JeffM2501 [ref link](https://github.com/raylib-extras/examples-cpp/tree/main/cards)
 - [ ] Create RPG character classes
-> Worth keeping something like a devlog or changelog. 
 
 ## How to clone and how to work on it
 1. `git clone git@github.com:seprab/raydroid.git`
