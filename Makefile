@@ -241,7 +241,11 @@ PROJECT_SOURCE_FILES ?= \
     screen_title.cpp \
     screen_options.cpp \
     screen_gameplay.cpp \
-    screen_ending.cpp
+    screen_ending.cpp \
+    card.cpp \
+    deck.cpp \
+    hand.cpp \
+    stack.cpp
 
 # Define all object files from source files
 OBJS = $(patsubst %.cpp, %.o, $(PROJECT_SOURCE_FILES))

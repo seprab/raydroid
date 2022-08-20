@@ -14,7 +14,9 @@
 
 #include "raylib.h"
 #include "screens.h"    // NOTE: Declares global (extern) variables and screens functions
+#if PLATFORM_DESKTOP
 #include "glfw3.h"
+#endif
 
 //----------------------------------------------------------------------------------
 // Shared Variables Definition (global)
@@ -282,7 +284,9 @@ static void UpdateDrawFrame(void)
         if (onTransition) DrawTransition();
 
         DrawFPS(10, 10);
+#if PLATFORM_DESKTOP
         glFinish();
+#endif
     EndDrawing();
     //----------------------------------------------------------------------------------
 }

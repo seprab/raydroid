@@ -96,11 +96,11 @@ endif
 
 # Compiler and archiver
 ifeq ($(ANDROID_ARCH),ARM)
-    CC = $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi$(ANDROID_API_VERSION)-clang
+    CC = $(ANDROID_TOOLCHAIN)/bin/armv7a-linux-androideabi$(ANDROID_API_VERSION)-clang++
     AR = $(ANDROID_TOOLCHAIN)/bin/arm-linux-androideabi-ar
 endif
 ifeq ($(ANDROID_ARCH),ARM64)
-    CC = $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android$(ANDROID_API_VERSION)-clang
+    CC = $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android$(ANDROID_API_VERSION)-clang++
     AR = $(ANDROID_TOOLCHAIN)/bin/aarch64-linux-android-ar
 endif
 ifeq ($(ANDROID_ARCH),x86)
