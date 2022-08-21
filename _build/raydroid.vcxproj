@@ -174,11 +174,11 @@
     <ClInclude Include="..\src\hand.h" />
     <ClInclude Include="..\src\screens.h" />
     <ClInclude Include="..\src\stack.h" />
-    <ClInclude Include="creature.h" />
-    <ClInclude Include="entity.h" />
-    <ClInclude Include="entityManager.h" />
-    <ClInclude Include="item.h" />
-    <ClInclude Include="player.h" />
+    <ClInclude Include="..\src\creature.h" />
+    <ClInclude Include="..\src\entity.h" />
+    <ClInclude Include="..\src\entityManager.h" />
+    <ClInclude Include="..\src\item.h" />
+    <ClInclude Include="..\src\player.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\card.cpp" />
@@ -191,11 +191,11 @@
     <ClCompile Include="..\src\screen_options.cpp" />
     <ClCompile Include="..\src\screen_title.cpp" />
     <ClCompile Include="..\src\stack.cpp" />
-    <ClCompile Include="creature.cpp" />
-    <ClCompile Include="entity.cpp" />
-    <ClCompile Include="entityManager.cpp" />
-    <ClCompile Include="item.cpp" />
-    <ClCompile Include="player.cpp" />
+    <ClCompile Include="..\src\creature.cpp" />
+    <ClCompile Include="..\src\entity.cpp" />
+    <ClCompile Include="..\src\entityManager.cpp" />
+    <ClCompile Include="..\src\item.cpp" />
+    <ClCompile Include="..\src\player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="raylib.vcxproj">

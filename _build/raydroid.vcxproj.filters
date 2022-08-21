@@ -24,19 +24,19 @@
     <ClInclude Include="..\src\card.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="creature.h">
+    <ClInclude Include="..\src\creature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="entity.h">
+    <ClInclude Include="..\src\entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="item.h">
+    <ClInclude Include="..\src\item.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="player.h">
+    <ClInclude Include="..\src\player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="entityManager.h">
+    <ClInclude Include="..\src\entityManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,19 +71,19 @@
     <ClCompile Include="..\src\card.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="creature.cpp">
+    <ClCompile Include="..\src\creature.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entity.cpp">
+    <ClCompile Include="..\src\entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="item.cpp">
+    <ClCompile Include="..\src\item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="player.cpp">
+    <ClCompile Include="..\src\player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entityManager.cpp">
+    <ClCompile Include="..\src\entityManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
