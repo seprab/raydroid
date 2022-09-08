@@ -6,6 +6,7 @@
 class entity
 {
 public:
+	entity();
 	entity(int _id);
 	~entity();
 	int GetID() const;
@@ -16,7 +17,6 @@ public:
 	void Damage(float _damage);
 	
 	virtual void Load();
-	virtual void Spawn() = 0;
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 	virtual void Destroy() = 0;

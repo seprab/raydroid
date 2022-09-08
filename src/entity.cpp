@@ -1,5 +1,9 @@
 #include "entity.h"
 
+entity::entity()
+{
+	
+}
 entity::entity(int _id):id(_id)
 {
 	Load();
