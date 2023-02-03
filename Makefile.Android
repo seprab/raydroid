@@ -181,7 +181,6 @@ create_temp_project_dirs:
 	if not exist $(PROJECT_BUILD_PATH)\assets\$(PROJECT_RESOURCES_PATH) mkdir $(PROJECT_BUILD_PATH)\assets\$(PROJECT_RESOURCES_PATH)
 	if not exist $(PROJECT_BUILD_PATH)\obj\screens mkdir $(PROJECT_BUILD_PATH)\obj\screens
 	if not exist $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm cp -r $(ANDROID_TOOLCHAIN)\sysroot\usr\include\aarch64-linux-android\asm $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm
-# if not exist $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm cp -r $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm-generic $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm
 
 	$(foreach dir, $(PROJECT_SOURCE_DIRS), $(call create_dir, $(dir)))
 
