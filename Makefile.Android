@@ -114,20 +114,20 @@ endif
 
 # Compiler flags for arquitecture
 ifeq ($(ANDROID_ARCH),ARM)
-    CFLAGS = -std=c++14 -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16
+    CFLAGS = -std=c++11 -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16
 endif
 ifeq ($(ANDROID_ARCH),ARM64)
-    CFLAGS = -std=c++14 -target aarch64 -mfix-cortex-a53-835769
+    CFLAGS = -std=c++11 -target aarch64 -mfix-cortex-a53-835769
 endif
 # Compilation functions attributes options
 CFLAGS += -ffunction-sections -funwind-tables -fstack-protector-strong -fPIC
 # Compiler options for the linker
 CFLAGS += -Wall -Wa,--noexecstack -Wformat -Werror=format-security -no-canonical-prefixes
 # Preprocessor macro definitions
-CFLAGS += -DANDROID -DPLATFORM_ANDROID -D__ANDROID_API__=$(ANDROID_API_VERSION)
+CFLAGS += -D__ANDROID__ -DPLATFORM_ANDROID -D__ANDROID_API__=$(ANDROID_API_VERSION)
 
 # Paths containing required header files
-INCLUDE_PATHS = -I. -I$(RAYLIB_PATH)/src -I$(NATIVE_APP_GLUE_PATH)
+INCLUDE_PATHS = -I. -I$(RAYLIB_PATH)/src -I$(NATIVE_APP_GLUE_PATH) -I$(ANDROID_TOOLCHAIN)\sysroot\usr\include -I$(ANDROID_TOOLCHAIN)\sysroot\usr\include\c++\v1
 
 # Linker options
 LDFLAGS = -Wl,-soname,lib$(PROJECT_LIBRARY_NAME).so -Wl,--exclude-libs,libatomic.a 
@@ -135,11 +135,11 @@ LDFLAGS += -Wl,--build-id -Wl,--no-undefined -Wl,-z,noexecstack -Wl,-z,relro -Wl
 # Force linking of library module to define symbol
 LDFLAGS += -u ANativeActivity_onCreate
 # Library paths containing required libs
-LDFLAGS += -L. -L$(PROJECT_BUILD_PATH)/obj -L$(PROJECT_BUILD_PATH)/lib/$(ANDROID_ARCH_NAME) -L$(ANDROID_TOOLCHAIN)\sysroot\usr\lib
+LDFLAGS += -L. -L$(PROJECT_BUILD_PATH)/obj -L$(PROJECT_BUILD_PATH)/lib/$(ANDROID_ARCH_NAME)
 
 # Define any libraries to link into executable
 # if you want to link libraries (libname.so or libname.a), use the -lname
-LDLIBS = -lm -lc -lraylib -llog -landroid -lEGL -lGLESv2 -lOpenSLES -ldl
+LDLIBS = -lm -lc++ -lraylib -llog -landroid -lEGL -lGLESv2 -lOpenSLES -ldl
 
 # Generate target objects list from PROJECT_SOURCE_FILES
 OBJS = $(patsubst %.cpp, $(PROJECT_BUILD_PATH)/obj/%.o, $(PROJECT_SOURCE_FILES))
@@ -180,6 +180,9 @@ create_temp_project_dirs:
 	if not exist $(PROJECT_BUILD_PATH)\assets mkdir $(PROJECT_BUILD_PATH)\assets
 	if not exist $(PROJECT_BUILD_PATH)\assets\$(PROJECT_RESOURCES_PATH) mkdir $(PROJECT_BUILD_PATH)\assets\$(PROJECT_RESOURCES_PATH)
 	if not exist $(PROJECT_BUILD_PATH)\obj\screens mkdir $(PROJECT_BUILD_PATH)\obj\screens
+	if not exist $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm cp -r $(ANDROID_TOOLCHAIN)\sysroot\usr\include\aarch64-linux-android\asm $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm
+# if not exist $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm cp -r $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm-generic $(ANDROID_TOOLCHAIN)\sysroot\usr\include\asm
+
 	$(foreach dir, $(PROJECT_SOURCE_DIRS), $(call create_dir, $(dir)))
 
 define create_dir
@@ -266,13 +269,13 @@ $(PROJECT_BUILD_PATH)/obj/%.o:$(GAME_SOURCE_PATH)/%.cpp
     
 # Compile project .java code into .class (Java bytecode) 
 compile_project_class:
-	$(JAVA_HOME)/bin/javac -verbose -source 1.7 -target 1.7 -d $(PROJECT_BUILD_PATH)/obj -bootclasspath $(JAVA_HOME)/jre/lib/rt.jar -classpath $(ANDROID_HOME)/platforms/android-$(ANDROID_API_VERSION)/android.jar;$(PROJECT_BUILD_PATH)/obj -sourcepath $(PROJECT_BUILD_PATH)/src $(PROJECT_BUILD_PATH)/src/com/$(APP_COMPANY_NAME)/$(APP_PRODUCT_NAME)/R.java $(PROJECT_BUILD_PATH)/src/com/$(APP_COMPANY_NAME)/$(APP_PRODUCT_NAME)/NativeLoader.java
+	$(JAVA_HOME)/bin/javac -verbose -source 1.8 -target 1.8 -d $(PROJECT_BUILD_PATH)/obj -bootclasspath $(JAVA_HOME)/jre/lib/rt.jar -classpath $(ANDROID_HOME)/platforms/android-$(ANDROID_API_VERSION)/android.jar;$(PROJECT_BUILD_PATH)/obj -sourcepath $(PROJECT_BUILD_PATH)/src $(PROJECT_BUILD_PATH)/src/com/$(APP_COMPANY_NAME)/$(APP_PRODUCT_NAME)/R.java $(PROJECT_BUILD_PATH)/src/com/$(APP_COMPANY_NAME)/$(APP_PRODUCT_NAME)/NativeLoader.java
 
 # Compile .class files into Dalvik executable bytecode (.dex)
 # NOTE: Since Android 5.0, Dalvik interpreter (JIT) has been replaced by ART (AOT)
 compile_project_class_dex:
 
-	$(JAVA_HOME)/bin/java -Xmx1024M -Xss1m -classpath $(ANDROID_BUILD_TOOLS)/lib -jar $(ANDROID_BUILD_TOOLS)/lib/dx.jar --dex --output=$(PROJECT_BUILD_PATH)/bin/classes.dex $(PROJECT_BUILD_PATH)/obj
+	$(ANDROID_BUILD_TOOLS)/d8 $(PROJECT_BUILD_PATH)/obj/com/$(APP_COMPANY_NAME)/$APP_PRODUCT_NAME/*.class --release --output $(PROJECT_BUILD_PATH)/bin --lib $(ANDROID_HOME)/platforms/android-$(ANDROID_API_VERSION)/android.jar
 
 # Create Android APK package: bin/$(PROJECT_NAME).unsigned.apk
 # NOTE: Requires compiled classes.dex and lib$(PROJECT_LIBRARY_NAME).so
@@ -280,6 +283,11 @@ compile_project_class_dex:
 create_project_apk_package:
 	$(ANDROID_BUILD_TOOLS)/aapt package -f -M $(PROJECT_BUILD_PATH)/AndroidManifest.xml -S $(PROJECT_BUILD_PATH)/res -A $(PROJECT_BUILD_PATH)/assets -I $(ANDROID_HOME)/platforms/android-$(ANDROID_API_VERSION)/android.jar -F $(PROJECT_BUILD_PATH)/bin/$(PROJECT_NAME).unsigned.apk $(PROJECT_BUILD_PATH)/bin
 	cd $(PROJECT_BUILD_PATH) && $(ANDROID_BUILD_TOOLS)/aapt add bin/$(PROJECT_NAME).unsigned.apk lib/$(ANDROID_ARCH_NAME)/lib$(PROJECT_LIBRARY_NAME).so $(PROJECT_SHARED_LIBS)
+
+	cd $(PROJECT_BUILD_PATH)
+	cp $(ANDROID_NDK)/sources/cxx-stl/llvm-libc++/libs/$(ANDROID_ARCH_NAME)/libc++_shared.so lib/$(ANDROID_ARCH_NAME)/libc++_shared.so
+	$(ANDROID_BUILD_TOOLS)/aapt add bin/$(PROJECT_NAME).unsigned.apk lib/$(ANDROID_ARCH_NAME)/libc++_shared.so
+	$(ANDROID_BUILD_TOOLS)/aapt add bin/$(PROJECT_NAME).unsigned.apk lib/$(ANDROID_ARCH_NAME)/lib$(PROJECT_LIBRARY_NAME).so $(PROJECT_SHARED_LIBS)
 
 # Create signed APK package using generated Key: bin/$(PROJECT_NAME).signed.apk 
 sign_project_apk_package:

@@ -39,7 +39,8 @@ static int finishScreen = 0;
 Deck cards;
 
 // the deck of cards we can pull from
-Stack DrawDeck{ 30, 20 };
+//Stack DrawDeck{ 30, 20 };
+Stack DrawDeck{};
 
 // the cards we have pulled
 Hand PlayerHand;
